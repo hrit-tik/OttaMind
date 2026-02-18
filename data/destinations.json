@@ -1,0 +1,212 @@
+[
+    {
+        "id": "goa",
+        "name": "Goa",
+        "type": "beach",
+        "avgStayCostPerDay": 2500,
+        "avgFoodCostPerDay": 800,
+        "avgLocalTransportCostPerDay": 500,
+        "tags": [
+            "beach",
+            "nightlife",
+            "adventure",
+            "water-sports",
+            "heritage"
+        ],
+        "bestSeason": "winter",
+        "rating": 4.5,
+        "coordinates": {
+            "lat": 15.2993,
+            "lng": 74.124
+        }
+    },
+    {
+        "id": "manali",
+        "name": "Manali",
+        "type": "mountain",
+        "avgStayCostPerDay": 2000,
+        "avgFoodCostPerDay": 600,
+        "avgLocalTransportCostPerDay": 400,
+        "tags": [
+            "mountain",
+            "adventure",
+            "snow",
+            "trekking",
+            "nature"
+        ],
+        "bestSeason": "summer",
+        "rating": 4.4,
+        "coordinates": {
+            "lat": 32.2396,
+            "lng": 77.1887
+        }
+    },
+    {
+        "id": "jaipur",
+        "name": "Jaipur",
+        "type": "heritage",
+        "avgStayCostPerDay": 1800,
+        "avgFoodCostPerDay": 500,
+        "avgLocalTransportCostPerDay": 350,
+        "tags": [
+            "heritage",
+            "culture",
+            "architecture",
+            "shopping",
+            "food"
+        ],
+        "bestSeason": "winter",
+        "rating": 4.3,
+        "coordinates": {
+            "lat": 26.9124,
+            "lng": 75.7873
+        }
+    },
+    {
+        "id": "kerala",
+        "name": "Kerala (Alleppey)",
+        "type": "backwater",
+        "avgStayCostPerDay": 3000,
+        "avgFoodCostPerDay": 700,
+        "avgLocalTransportCostPerDay": 450,
+        "tags": [
+            "backwater",
+            "nature",
+            "relaxation",
+            "houseboat",
+            "ayurveda"
+        ],
+        "bestSeason": "winter",
+        "rating": 4.7,
+        "coordinates": {
+            "lat": 9.4981,
+            "lng": 76.3388
+        }
+    },
+    {
+        "id": "rishikesh",
+        "name": "Rishikesh",
+        "type": "adventure",
+        "avgStayCostPerDay": 1200,
+        "avgFoodCostPerDay": 400,
+        "avgLocalTransportCostPerDay": 250,
+        "tags": [
+            "adventure",
+            "spiritual",
+            "rafting",
+            "yoga",
+            "trekking"
+        ],
+        "bestSeason": "autumn",
+        "rating": 4.4,
+        "coordinates": {
+            "lat": 30.0869,
+            "lng": 78.2676
+        }
+    },
+    {
+        "id": "udaipur",
+        "name": "Udaipur",
+        "type": "heritage",
+        "avgStayCostPerDay": 2200,
+        "avgFoodCostPerDay": 550,
+        "avgLocalTransportCostPerDay": 300,
+        "tags": [
+            "heritage",
+            "romantic",
+            "lake",
+            "culture",
+            "architecture"
+        ],
+        "bestSeason": "winter",
+        "rating": 4.6,
+        "coordinates": {
+            "lat": 24.5854,
+            "lng": 73.7125
+        }
+    },
+    {
+        "id": "ladakh",
+        "name": "Leh-Ladakh",
+        "type": "mountain",
+        "avgStayCostPerDay": 2800,
+        "avgFoodCostPerDay": 700,
+        "avgLocalTransportCostPerDay": 800,
+        "tags": [
+            "mountain",
+            "adventure",
+            "road-trip",
+            "nature",
+            "photography"
+        ],
+        "bestSeason": "summer",
+        "rating": 4.8,
+        "coordinates": {
+            "lat": 34.1526,
+            "lng": 77.5771
+        }
+    },
+    {
+        "id": "varanasi",
+        "name": "Varanasi",
+        "type": "spiritual",
+        "avgStayCostPerDay": 1000,
+        "avgFoodCostPerDay": 350,
+        "avgLocalTransportCostPerDay": 200,
+        "tags": [
+            "spiritual",
+            "heritage",
+            "culture",
+            "food",
+            "photography"
+        ],
+        "bestSeason": "winter",
+        "rating": 4.2,
+        "coordinates": {
+            "lat": 25.3176,
+            "lng": 82.9739
+        }
+    },
+    {
+        "id": "andaman",
+        "name": "Andaman Islands",
+        "type": "beach",
+        "avgStayCostPerDay": 3500,
+        "avgFoodCostPerDay": 900,
+        "avgLocalTransportCostPerDay": 600,
+        "tags": [
+            "beach",
+            "water-sports",
+            "nature",
+            "scuba",
+            "island"
+        ],
+        "bestSeason": "winter",
+        "rating": 4.6,
+        "coordinates": {
+            "lat": 11.7401,
+            "lng": 92.6586
+        }
+    },
+    {
+        "id": "shimla",
+        "name": "Shimla",
+        "type": "hill-station",
+        "avgStayCostPerDay": 1800,
+        "avgFoodCostPerDay": 500,
+        "avgLocalTransportCostPerDay": 300,
+        "tags": [
+            "mountain",
+            "nature",
+            "heritage",
+            "relaxation",
+            "snow"
+        ],
+        "bestSeason": "summer",
+        "rating": 4.1,
+        "coordinates": {
+            "lat": 31.1048,
+            "lng": 77.1734
+        }
+    }
+]
