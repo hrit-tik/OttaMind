@@ -733,3 +733,326 @@ body {
     background-position: -200% 0;
   }
 }
+
+/* ════════════════════════════════════════════
+   ADVANCED FEATURES
+   ════════════════════════════════════════════ */
+
+/* ── Alternative Suggestions ── */
+.alt-panel {
+  padding: 1.5rem;
+}
+
+.alt-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.alt-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  border-radius: 0.875rem;
+  padding: 1.25rem;
+}
+
+.alt-card-rank {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent-violet);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.25rem;
+}
+
+.alt-card-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.alt-card-stats {
+  display: flex;
+  gap: 1rem;
+}
+
+.alt-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.alt-stat svg {
+  color: var(--accent-cyan);
+}
+
+/* ── Compare Page ── */
+.compare-selectors {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.compare-selector {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.compare-vs {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--accent-violet);
+  padding-bottom: 0.55rem;
+}
+
+.compare-table {
+  padding: 0;
+  overflow: hidden;
+}
+
+.compare-row {
+  display: grid;
+  grid-template-columns: 160px 1fr 1fr;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.compare-row:last-child {
+  border-bottom: none;
+}
+
+.compare-header {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.compare-header .compare-cell {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.compare-cell {
+  padding: 0.85rem 1.25rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+}
+
+.compare-label-cell {
+  font-weight: 600;
+  color: var(--text-primary);
+  gap: 0.5rem;
+}
+
+.compare-label-cell svg {
+  color: var(--accent-violet);
+}
+
+.compare-tags {
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.compare-tags .tag-pill {
+  font-size: 0.7rem;
+  padding: 0.2rem 0.6rem;
+}
+
+/* ── Save Trip Bar ── */
+.save-trip-bar {
+  display: flex;
+  gap: 1rem;
+}
+
+.save-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.4rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--glass-border);
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.save-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 12px rgba(34, 211, 238, 0.15);
+}
+
+.save-btn svg {
+  color: var(--accent-cyan);
+}
+
+/* ── Smart Insights ── */
+.insight-panel {
+  padding: 1.5rem;
+}
+
+.insight-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.insight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border-radius: 0.75rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.insight-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.insight-text {
+  flex: 1;
+}
+
+.insight-tip {
+  background: rgba(34, 211, 238, 0.06);
+  border-left: 3px solid var(--accent-cyan);
+}
+
+.insight-warning {
+  background: rgba(251, 191, 36, 0.06);
+  border-left: 3px solid #fbbf24;
+}
+
+.insight-info {
+  background: rgba(139, 92, 246, 0.06);
+  border-left: 3px solid var(--accent-violet);
+}
+
+/* ════════════════════════════════════════════
+   MICRO INTERACTIONS
+   ════════════════════════════════════════════ */
+
+/* ── Card lift on hover ── */
+.card-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+}
+
+.dest-card,
+.chart-card,
+.timeline-card,
+.alt-panel,
+.insight-panel,
+.feature-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+.dest-card:hover,
+.chart-card:hover,
+.timeline-card:hover,
+.alt-panel:hover,
+.insight-panel:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+}
+
+/* ── Button pulse ── */
+.btn-pulse {
+  animation: subtlePulse 3s ease-in-out infinite;
+}
+
+@keyframes subtlePulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 211, 238, 0);
+  }
+
+  50% {
+    box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.08);
+  }
+}
+
+.btn-gradient {
+  animation: gradientShift 4s ease infinite, subtlePulse 3s ease-in-out infinite;
+}
+
+/* ── Background gradient slow orbit ── */
+.blob {
+  animation: blobFloat 20s ease-in-out infinite alternate, blobOrbit 60s linear infinite;
+}
+
+@keyframes blobOrbit {
+  0% {
+    filter: blur(120px) hue-rotate(0deg);
+  }
+
+  100% {
+    filter: blur(120px) hue-rotate(30deg);
+  }
+}
+
+/* ── Timeline stagger (handled by Framer Motion in component,
+     but add a CSS fallback for visual polish) ── */
+.timeline-item {
+  opacity: 1;
+  animation: fadeSlideIn 0.4s ease-out both;
+}
+
+.timeline-item:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.timeline-item:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.timeline-item:nth-child(3) {
+  animation-delay: 0.16s;
+}
+
+.timeline-item:nth-child(4) {
+  animation-delay: 0.24s;
+}
+
+.timeline-item:nth-child(5) {
+  animation-delay: 0.32s;
+}
+
+.timeline-item:nth-child(6) {
+  animation-delay: 0.40s;
+}
+
+.timeline-item:nth-child(7) {
+  animation-delay: 0.48s;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
