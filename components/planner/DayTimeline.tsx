@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import type { RankedDestination } from "@/store/useTripStore";
@@ -27,7 +27,7 @@ function buildDayPlan(day: number, dest: RankedDestination) {
     return { morning, afternoon, evening, budget };
 }
 
-export default function DayTimeline({ dest, days }: Props) {
+function DayTimeline({ dest, days }: Props) {
     const [open, setOpen] = useState<number | null>(0);
 
     if (!dest || days <= 0) return null;
@@ -105,3 +105,5 @@ export default function DayTimeline({ dest, days }: Props) {
         </motion.div>
     );
 }
+
+export default memo(DayTimeline);

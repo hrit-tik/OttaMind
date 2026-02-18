@@ -1,6 +1,20 @@
+/**
+ * Planner Page — Orchestrator
+ * ─────────────────────────────────────────────
+ * Connects all planner panel components to the Zustand store
+ * with debounced recalculation, shimmer loading states, and
+ * lazy-loaded heavy components (map, charts).
+ *
+ * Performance:
+ * - Inputs are debounced (350ms) before triggering recalc
+ * - Heavy components (BudgetPieChart, Map) are lazy-loaded
+ * - Child components are memoized to prevent unnecessary re-renders
+ * - Zustand selector pattern avoids full-store subscriptions
+ */
+
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, lazy, Suspense } from "react";
 import { useTripStore } from "@/store/useTripStore";
 import { generatePlan } from "@/utils/plannerEngine";
 import { generateInsights } from "@/utils/insightEngine";
@@ -8,26 +22,40 @@ import { useDebounce } from "@/utils/useDebounce";
 
 import InputPanel from "@/components/planner/InputPanel";
 import DestinationCard from "@/components/planner/DestinationCard";
-import BudgetPieChart from "@/components/planner/BudgetPieChart";
 import DayTimeline from "@/components/planner/DayTimeline";
 import Shimmer from "@/components/planner/Shimmer";
 import AlternativeSuggestions from "@/components/planner/AlternativeSuggestions";
 import SmartInsightBox from "@/components/planner/SmartInsightBox";
 import SaveTrip from "@/components/planner/SaveTrip";
+import MonetizationBar from "@/components/planner/MonetizationBar";
 import SectionTitle from "@/components/SectionTitle";
 
-export default function PlannerPage() {
-    const {
-        budget,
-        days,
-        travelers,
-        preferences,
-        travelStyle,
-        setGeneratedPlan,
-        generatedPlan,
-    } = useTripStore();
+/* ── Lazy-loaded heavy components ── */
+const BudgetPieChart = lazy(() => import("@/components/planner/BudgetPieChart"));
+const DestinationMap = lazy(() => import("@/components/planner/DestinationMap"));
 
-    /* Debounce inputs so we don't recalculate on every keystroke */
+/** Inline fallback for lazy-loaded sections */
+function LazyFallback() {
+    return (
+        <div className="shimmer-wrap glass" style={{ padding: "1.5rem" }}>
+            <div className="shimmer-line" style={{ width: "60%" }} />
+            <div className="shimmer-line" style={{ width: "80%", animationDelay: "0.15s" }} />
+            <div className="shimmer-line" style={{ width: "45%", animationDelay: "0.3s" }} />
+        </div>
+    );
+}
+
+export default function PlannerPage() {
+    /* ── Zustand selectors (granular to avoid extra re-renders) ── */
+    const budget = useTripStore((s) => s.budget);
+    const days = useTripStore((s) => s.days);
+    const travelers = useTripStore((s) => s.travelers);
+    const preferences = useTripStore((s) => s.preferences);
+    const travelStyle = useTripStore((s) => s.travelStyle);
+    const setGeneratedPlan = useTripStore((s) => s.setGeneratedPlan);
+    const generatedPlan = useTripStore((s) => s.generatedPlan);
+
+    /* ── Debounced inputs ── */
     const debouncedBudget = useDebounce(budget, 350);
     const debouncedDays = useDebounce(days, 350);
     const debouncedTravelers = useDebounce(travelers, 350);
@@ -36,7 +64,7 @@ export default function PlannerPage() {
 
     const [loading, setLoading] = useState(false);
 
-    /* Recalculate when debounced values settle */
+    /* ── Memoized plan recalculation ── */
     const plan = useMemo(
         () =>
             generatePlan({
@@ -49,7 +77,7 @@ export default function PlannerPage() {
         [debouncedBudget, debouncedDays, debouncedTravelers, debouncedPrefs, debouncedStyle],
     );
 
-    /* Smart insights */
+    /* ── Memoized insights ── */
     const insights = useMemo(() => {
         const top = plan.rankedDestinations[0];
         if (!top) return [];
@@ -62,37 +90,57 @@ export default function PlannerPage() {
         });
     }, [plan, debouncedStyle, debouncedDays, debouncedPrefs]);
 
-    /* Show shimmer while waiting for debounce to settle */
+    /* ── Shimmer while debounce settles ── */
     useEffect(() => {
         setLoading(true);
         const id = setTimeout(() => setLoading(false), 400);
         return () => clearTimeout(id);
     }, [budget, days, travelers, preferences, travelStyle]);
 
-    /* Push to store */
+    /* ── Push computed plan to store ── */
     useEffect(() => {
         setGeneratedPlan(plan);
     }, [plan, setGeneratedPlan]);
 
+    /* ── Derived data ── */
     const topDest = generatedPlan?.rankedDestinations[0] ?? null;
     const altDests = generatedPlan?.rankedDestinations.slice(1) ?? [];
 
     return (
         <main className="planner-layout">
-            {/* ── Left Panel ── */}
+            {/* ── Left Panel: Inputs ── */}
             <aside className="planner-left glass">
                 <SectionTitle title="Plan Your Trip" subtitle="Adjust the inputs to see live results" />
                 <InputPanel />
             </aside>
 
-            {/* ── Right Panel ── */}
+            {/* ── Right Panel: Live Preview ── */}
             <section className="planner-right">
                 <Shimmer loading={loading} lines={5}>
+                    {/* Top destination + alternatives */}
                     <DestinationCard dest={topDest} />
                     <AlternativeSuggestions destinations={altDests} />
-                    <BudgetPieChart dest={topDest} />
+
+                    {/* Monetization CTAs */}
+                    <MonetizationBar destinationName={topDest?.name ?? null} />
+
+                    {/* Budget chart (lazy) */}
+                    <Suspense fallback={<LazyFallback />}>
+                        <BudgetPieChart dest={topDest} />
+                    </Suspense>
+
+                    {/* Smart insights */}
                     <SmartInsightBox insights={insights} />
+
+                    {/* Day-by-day timeline */}
                     <DayTimeline dest={topDest} days={days} />
+
+                    {/* Map (lazy, loaded via IntersectionObserver inside component) */}
+                    <Suspense fallback={<LazyFallback />}>
+                        <DestinationMap destinationId={topDest?.id ?? null} />
+                    </Suspense>
+
+                    {/* Save & export actions */}
                     <SaveTrip
                         plan={generatedPlan}
                         days={days}

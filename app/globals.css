@@ -1056,3 +1056,234 @@ body {
     transform: translateX(0);
   }
 }
+
+/* ════════════════════════════════════════════
+   MAP COMPONENT
+   ════════════════════════════════════════════ */
+
+.map-lazy-wrapper {
+  min-height: 300px;
+}
+
+.map-card {
+  padding: 1.5rem;
+}
+
+.map-placeholder {
+  position: relative;
+  height: 220px;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.map-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.map-center-pin {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--accent-cyan);
+  animation: pinBounce 2s ease-in-out infinite;
+}
+
+.map-pin-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.4rem;
+}
+
+@keyframes pinBounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.map-coords {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.75rem;
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  opacity: 0.6;
+  font-family: monospace;
+}
+
+.map-markers {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.map-marker {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  padding: 0.4rem 0.65rem;
+  border-radius: 0.5rem;
+}
+
+.map-marker-stay {
+  background: rgba(34, 211, 238, 0.06);
+  border-left: 3px solid var(--accent-cyan);
+}
+
+.map-marker-stay svg {
+  color: var(--accent-cyan);
+}
+
+.map-marker-attraction {
+  background: rgba(139, 92, 246, 0.06);
+  border-left: 3px solid var(--accent-violet);
+}
+
+.map-marker-attraction svg {
+  color: var(--accent-violet);
+}
+
+.map-api-note {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  opacity: 0.5;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.map-empty {
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 2rem 0;
+  font-size: 0.9rem;
+}
+
+.map-skeleton {
+  padding: 1.5rem;
+  min-height: 300px;
+}
+
+/* ════════════════════════════════════════════
+   MONETIZATION BAR
+   ════════════════════════════════════════════ */
+
+.monetization-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.monetize-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.2rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: inherit;
+  border-radius: 0.7rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+}
+
+.monetize-flights {
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.1), rgba(34, 211, 238, 0.04));
+}
+
+.monetize-flights:hover {
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.2), rgba(34, 211, 238, 0.08));
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 10px rgba(34, 211, 238, 0.12);
+}
+
+.monetize-flights svg:first-child {
+  color: var(--accent-cyan);
+}
+
+.monetize-stay {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.04));
+}
+
+.monetize-stay:hover {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(139, 92, 246, 0.08));
+  border-color: var(--accent-violet);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.12);
+}
+
+.monetize-stay svg:first-child {
+  color: var(--accent-violet);
+}
+
+.monetize-premium {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.08), rgba(251, 146, 60, 0.04));
+  border-color: rgba(251, 191, 36, 0.2);
+}
+
+.monetize-premium:hover {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(251, 146, 60, 0.08));
+  border-color: #fbbf24;
+  box-shadow: 0 0 10px rgba(251, 191, 36, 0.12);
+}
+
+.monetize-premium svg {
+  color: #fbbf24;
+}
+
+.monetize-external {
+  opacity: 0.4;
+  margin-left: -0.2rem;
+}
+
+.premium-badge {
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 0.12rem 0.4rem;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #fbbf24, #f97316);
+  color: #000;
+}
+
+/* ── AdSense placeholder ── */
+/*
+.adsense-container {
+  margin: 1.5rem 0;
+  min-height: 90px;
+  background: rgba(255,255,255,0.02);
+  border: 1px dashed var(--glass-border);
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  opacity: 0.5;
+}
+*/

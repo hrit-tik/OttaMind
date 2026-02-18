@@ -1,5 +1,13 @@
+/**
+ * DestinationCard — Top-ranked destination display
+ * ─────────────────────────────────────────────
+ * Memoized to prevent re-renders when parent state
+ * changes but the destination stays the same.
+ */
+
 "use client";
 
+import { memo } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Star, IndianRupee } from "lucide-react";
 import type { RankedDestination } from "@/store/useTripStore";
@@ -8,7 +16,7 @@ interface Props {
     dest: RankedDestination | null;
 }
 
-export default function DestinationCard({ dest }: Props) {
+function DestinationCard({ dest }: Props) {
     if (!dest) return null;
 
     const { stay, travel, food, activities } = dest.dailyBudgetBreakdown;
@@ -44,3 +52,5 @@ export default function DestinationCard({ dest }: Props) {
         </motion.div>
     );
 }
+
+export default memo(DestinationCard);
